@@ -111,25 +111,25 @@ first_host_address = subnet_decimal_list[:3] + [subnet_decimal_list[3] + 1]
 
 
 last_host_address = []
-if 9 <= int(ip_prefix) <= 16:
+if 1 <= int(ip_prefix) <= 8:
+    last_host_address = [subnet_decimal_list[0] + 2**(8-int(ip_prefix)) - 1] + [255, 255, 254]
+elif 9 <= int(ip_prefix) <= 16:
     last_host_address = subnet_decimal_list[:1] + [subnet_decimal_list[1] + 2**(16-int(ip_prefix)) - 1] + [255, 254]
 elif 17 <= int(ip_prefix) <= 24:
     last_host_address = subnet_decimal_list[:2] + [subnet_decimal_list[2] + 2**(24-int(ip_prefix)) - 1] + [254]
 elif 25 <= int(ip_prefix) <= 30:
     last_host_address = subnet_decimal_list[:3] + [subnet_decimal_list[3] + 2**(32-int(ip_prefix)) - 2]
-elif 1 <= int(ip_prefix) <= 8:
-    last_host_address = [subnet_decimal_list[0] + 2**(8-int(ip_prefix)) - 1] + [255, 255, 254]
 
 
 broadcast_address = []
-if 9 <= int(ip_prefix) <= 16:
+if 1 <= int(ip_prefix) <= 8:
+    broadcast_address = [subnet_decimal_list[0] + 2**(8-int(ip_prefix)) - 1] + [255, 255, 255]
+elif 9 <= int(ip_prefix) <= 16:
     broadcast_address = subnet_decimal_list[:1] + [subnet_decimal_list[1] + 2**(16-int(ip_prefix)) - 1] + [255, 255]
 elif 17 <= int(ip_prefix) <= 24:
     broadcast_address = subnet_decimal_list[:2] + [subnet_decimal_list[2] + 2**(24-int(ip_prefix)) - 1] + [255]
 elif 25 <= int(ip_prefix) <= 30:
-    broadcast_address = subnet_decimal_list[:3] + [subnet_decimal_list[3] + 2**(32-int(ip_prefix)) - 1]
-elif 1 <= int(ip_prefix) <= 8:
-    broadcast_address = [subnet_decimal_list[0] + 2**(8-int(ip_prefix)) - 1] + [255, 255, 255]     
+    broadcast_address = subnet_decimal_list[:3] + [subnet_decimal_list[3] + 2**(32-int(ip_prefix)) - 1]     
         
 
 print('Number of octets:' + 20*' ', end='')
