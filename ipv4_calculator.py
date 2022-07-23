@@ -219,13 +219,13 @@ for i in mask_bin_list:
 
 print()
 
-print('Network Address (binary): ' + 12*' ', end='')
+print('Network Address(binary): ' + 12*' ', end='')
 for i in subnet_bin_list:
     print(i, end=11*' ')
 
 print()
 
-print('First available host(decimal): ' + 7*' ', end='')
+print('First available host(binary): ' + 7*' ', end='')
 for i in first_host_address:
     print(dec_to_bin(i), end=11*' ')
 
