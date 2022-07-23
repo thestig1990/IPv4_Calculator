@@ -24,7 +24,7 @@ def correct_ip(address):
 
 
 
-# Output data
+# Incoming data
 # Entering IP address
 host_address = input('Enter IP address of host: ')
 
@@ -159,7 +159,7 @@ for i in mask_decimal_list:
         print(i, end=17*' ')
     else:
         print(i, end=18*' ')
-    
+
 
 print()
 
@@ -174,7 +174,7 @@ for i in subnet_decimal_list:
 
 print()
 
-print('First available host(decimal): ' + 9*' ', end='')
+print('First available host (decimal): ' + 8*' ', end='')
 for i in first_host_address:
     if len(str(i)) == 3:
         print(i, end=16*' ')
@@ -185,7 +185,7 @@ for i in first_host_address:
 
 print()
 
-print('Last available host(decimal): ' + 10*' ', end='')
+print('Last available host (decimal): ' + 9*' ', end='')
 for i in last_host_address:
     if len(str(i)) == 3:
         print(i, end=16*' ')
@@ -219,19 +219,19 @@ for i in mask_bin_list:
 
 print()
 
-print('Network Address(binary): ' + 13*' ', end='')
+print('Network Address (binary): ' + 12*' ', end='')
 for i in subnet_bin_list:
     print(i, end=11*' ')
 
 print()
 
-print('First available host(binary): ' + 8*' ', end='')
+print('First available host (binary): ' + 7*' ', end='')
 for i in first_host_address:
     print(dec_to_bin(i), end=11*' ')
 
 print()
 
-print('Last available host(binary): ' + 9*' ', end='')
+print('Last available host (binary): ' + 8*' ', end='')
 for i in last_host_address:
     print(dec_to_bin(i), end=11*' ')
 
