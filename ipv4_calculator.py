@@ -30,7 +30,7 @@ host_address = input('Enter IP address of host: ')
 
 
 while True:
-    if correct_ip(host_address) == True:
+    if correct_ip(host_address):
         break
     else:
         host_address = input('Please, Enter correct IP address of host: ')
