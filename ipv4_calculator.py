@@ -1,3 +1,9 @@
+# IPv4_Calculator is developed for:
+# 1.Determine the network class (A, B, C);
+# 2.Determine which category the address belongs to (private, public);
+# 3.Determine subnet attributes.
+
+
 # function for convert decimal to binary
 def dec_to_bin(num):
     bin_str = ''
@@ -11,9 +17,9 @@ def dec_to_bin(num):
 
 # function to determine the correctness of IP address
 def correct_ip(address):
-    L = address.split('.')
+    l1 = address.split('.')
     count = 0
-    for i in L:
+    for i in l1:
         if 0 <= int(i) <= 255:
             count += 1
         else:
@@ -22,13 +28,11 @@ def correct_ip(address):
         return True
 
 
-
-
 # Incoming data
 # Entering IP address
 host_address = input('Enter IP address of host: ')
 
-
+# check the correctness of the IP address
 while True:
     if correct_ip(host_address):
         break
@@ -38,8 +42,15 @@ while True:
           
 ip_prefix = input('Enter IP prefix: ')
 
-print(f'IP address: {host_address}/{ip_prefix}\n')
+# check the correctness of the prefix
+while True:
+    if 1 <= int(ip_prefix) <= 31:
+        break
+    else:
+        ip_prefix = input('Please, Enter correct prefix(<32): ')
 
+
+print(f'IP address: {host_address}/{ip_prefix}\n')
 
 
 # 1. Determine the network class(A, B, C)
@@ -56,7 +67,6 @@ elif 128 <= int(ip_list[0]) < 192:
 
 elif 192 <= int(ip_list[0]) < 223:
     print(f'{n1}. The network class - "C"')
-
 
 
 # 2. Determine which category the address belongs to (private, public)
@@ -82,7 +92,6 @@ else:
     print(f'{n2}. The address category - "Public Internet"\n')
 
 
-
 # 3. Determine subnet attributes
 
 n3 = 3  # n3 - third step
@@ -101,13 +110,16 @@ ip_bin_list = [dec_to_bin(int(i)) for i in ip_list]
 
 subnet_decimal_list = []
 for i in range(4):
-    subnet_decimal_list.append(int(('0b'+ mask_bin_list[i]),2) & int(('0b'+ ip_bin_list[i]),2))
+    subnet_decimal_list.append(int(('0b' + mask_bin_list[i]), 2) & int(('0b' + ip_bin_list[i]), 2))
 
 
 subnet_bin_list = [dec_to_bin(i) for i in subnet_decimal_list]
 
 
-first_host_address = subnet_decimal_list[:3] + [subnet_decimal_list[3] + 1]
+if 1 <= int(ip_prefix) <= 30:
+    first_host_address = subnet_decimal_list[:3] + [subnet_decimal_list[3] + 1]
+else:
+    first_host_address = subnet_decimal_list[:3] + [subnet_decimal_list[3]]
 
 
 last_host_address = []
@@ -119,18 +131,22 @@ elif 17 <= int(ip_prefix) <= 24:
     last_host_address = subnet_decimal_list[:2] + [subnet_decimal_list[2] + 2**(24-int(ip_prefix)) - 1] + [254]
 elif 25 <= int(ip_prefix) <= 30:
     last_host_address = subnet_decimal_list[:3] + [subnet_decimal_list[3] + 2**(32-int(ip_prefix)) - 2]
+elif int(ip_prefix) == 31:
+    last_host_address = subnet_decimal_list[:3] + [subnet_decimal_list[3] + 2**(32-int(ip_prefix)) - 1]
 
+print(last_host_address )
 
 broadcast_address = []
 if 1 <= int(ip_prefix) <= 8:
-    broadcast_address = [subnet_decimal_list[0] + 2**(8-int(ip_prefix)) - 1] + [255, 255, 255]
+    broadcast_address = [subnet_decimal_list[0] + 2**(8-int(ip_prefix)) - 1] + [255, 255, 255] 
 elif 9 <= int(ip_prefix) <= 16:
     broadcast_address = subnet_decimal_list[:1] + [subnet_decimal_list[1] + 2**(16-int(ip_prefix)) - 1] + [255, 255]
 elif 17 <= int(ip_prefix) <= 24:
     broadcast_address = subnet_decimal_list[:2] + [subnet_decimal_list[2] + 2**(24-int(ip_prefix)) - 1] + [255]
 elif 25 <= int(ip_prefix) <= 30:
-    broadcast_address = subnet_decimal_list[:3] + [subnet_decimal_list[3] + 2**(32-int(ip_prefix)) - 1]     
-        
+    broadcast_address = subnet_decimal_list[:3] + [subnet_decimal_list[3] + 2**(32-int(ip_prefix)) - 1]    
+
+print(broadcast_address)
 
 print('Number of octets:' + 20*' ', end='')
 for i in ip_dict:
@@ -160,17 +176,19 @@ for i in mask_decimal_list:
     else:
         print(i, end=18*' ')
 
-
 print()
 
 print('Network Address (decimal): ' + 13*' ', end='')
-for i in subnet_decimal_list:
-    if len(str(i)) == 3:
-        print(i, end=16*' ')
-    elif len(str(i)) == 2:
-        print(i, end=17*' ')
-    else:
-        print(i, end=18*' ')
+if 1 <= int(ip_prefix) <= 30:
+    for i in subnet_decimal_list:
+        if len(str(i)) == 3:
+            print(i, end=16*' ')
+        elif len(str(i)) == 2:
+            print(i, end=17*' ')
+        else:
+            print(i, end=18*' ')
+else:
+    print('                 "Point to point connection"', end='')
 
 print()
 
@@ -197,13 +215,16 @@ for i in last_host_address:
 print()
 
 print('Broadcast address (decimal): ' + 11*' ', end='')
-for i in broadcast_address:
-    if len(str(i)) == 3:
-        print(i, end=16*' ')
-    elif len(str(i)) == 2:
-        print(i, end=17*' ')
-    else:
-        print(i, end=18*' ')
+if 1 <= int(ip_prefix) <= 30:
+    for i in broadcast_address:
+        if len(str(i)) == 3:
+            print(i, end=16*' ')
+        elif len(str(i)) == 2:
+            print(i, end=17*' ')
+        else:
+            print(i, end=18*' ')
+else:
+    print('                 "Point to point connection"', end='')
 
 print()
 
@@ -220,8 +241,11 @@ for i in mask_bin_list:
 print()
 
 print('Network Address (binary): ' + 12*' ', end='')
-for i in subnet_bin_list:
-    print(i, end=11*' ')
+if 1 <= int(ip_prefix) <= 30:
+    for i in subnet_bin_list:
+        print(i, end=11*' ')
+else:
+    print('                   "Point to point connection"', end='')
 
 print()
 
@@ -238,11 +262,17 @@ for i in last_host_address:
 print()
 
 print('Broadcast address (binary): ' + 10*' ', end='')
-for i in broadcast_address:
-    print(dec_to_bin(i), end=11*' ')
+if 1 <= int(ip_prefix) <= 30:
+    for i in broadcast_address:
+        print(dec_to_bin(i), end=11*' ')
+else:
+    print('                   "Point to point connection"', end='')
 
 print()
 
 print('Available number of addresses: ' + 24*' ', end='')
 n = 32-int(ip_prefix)
-print(f'32 - {ip_prefix} =', 32-int(ip_prefix), f', 2**{n} - 2 =', (2**(32-int(ip_prefix)) - 2), end='\n')
+if 1 <= int(ip_prefix) <= 30:
+    print(f'32 - {ip_prefix} =', 32-int(ip_prefix), f', 2**{n} - 2 =', (2**(32-int(ip_prefix)) - 2), end='\n')
+else:
+    print('  "Point to point connection"', end='')
