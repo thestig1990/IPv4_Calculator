@@ -128,7 +128,6 @@ elif 25 <= int(ip_prefix) <= 30:
 elif int(ip_prefix) == 31:
     last_host_address = subnet_decimal_list[:3] + [subnet_decimal_list[3] + 2**(32-int(ip_prefix)) - 1]
 
-print(last_host_address )
 
 broadcast_address = []
 if 1 <= int(ip_prefix) <= 8:
@@ -140,7 +139,6 @@ elif 17 <= int(ip_prefix) <= 24:
 elif 25 <= int(ip_prefix) <= 30:
     broadcast_address = subnet_decimal_list[:3] + [subnet_decimal_list[3] + 2**(32-int(ip_prefix)) - 1]    
 
-print(broadcast_address)
 
 print('Number of octets:' + 20*' ', end='')
 for i in ip_dict:
