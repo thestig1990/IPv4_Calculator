@@ -33,7 +33,7 @@ while True:
     else:
         host_address = input('Please, Enter correct IP address of host: ')
 
-          
+# Entering IP prefix         
 ip_prefix = input('Enter IP prefix: ')
 
 # check the correctness of the prefix
