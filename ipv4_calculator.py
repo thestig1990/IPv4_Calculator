@@ -68,19 +68,19 @@ elif 192 <= int(ip_list[0]) < 223:
 
 n2 = 2  # n2 - second step
 
-octet_list = [str(i+1) + 'st octet' for i in range(len(ip_list))]  # create a list with the serial numbers of the octets
+octet_list = [str(i+1) + ' octet' for i in range(len(ip_list))]  # create a list with the serial numbers of the octets
 ip_dict = {}
 for key, value in zip(octet_list, ip_list):  # create a dictionary with IP address elements divided into octets
     ip_dict[key] = int(value)
 
 
-if ip_dict['1st octet'] == 10:
+if ip_dict['1 octet'] == 10:
     print(f'{n2}. The address category - "Private Internet"')
     
-elif ip_dict['1st octet'] == 172 and 16 <= ip_dict['2st octet'] <= 31:
+elif ip_dict['1 octet'] == 172 and 16 <= ip_dict['2 octet'] <= 31:
     print(f'{n2}. The address category - "Private Internet"')
     
-elif ip_dict['1st octet'] == 192 and ip_dict['2st octet'] == 168:
+elif ip_dict['1 octet'] == 192 and ip_dict['2 octet'] == 168:
     print(f'{n2}. The address category - "Private Internet"')
     
 else:
@@ -143,8 +143,8 @@ elif 25 <= int(ip_prefix) <= 30:
 
 
 print('Number of octets:' + 20*' ', end='')
-for i in ip_dict:
-    if i == '4st octet':
+for i in ['1st octet', '2nd octet', '3rd octet', '4th octet']:
+    if i == '4th octet':
         print(i, end='\n')
     else:
         print(i, end=10*' ')
@@ -153,7 +153,7 @@ print(52*'- ')
 
 print('Host Address (decimal):' + 17*' ', end='')
 for i in ip_dict:
-    if i == '4st octet':
+    if i == '4 octet':
         print(ip_dict[i], end='\n')
     else:
         if len(str(ip_dict[i])) == 3:
