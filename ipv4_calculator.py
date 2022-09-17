@@ -149,7 +149,7 @@ for i in ip_dict:
     else:
         print(i, end=10*' ')
 
-print(53*'- ')
+print(52*'- ')
 
 print('Host Address (decimal):' + 17*' ', end='')
 for i in ip_dict:
