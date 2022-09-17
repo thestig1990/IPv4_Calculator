@@ -43,6 +43,7 @@ while True:
     else:
         ip_prefix = input('Please, Enter correct prefix(<32): ')
 
+print()
 
 print(f'IP address: {host_address}/{ip_prefix}\n')
 
@@ -74,22 +75,23 @@ for key, value in zip(octet_list, ip_list):  # create a dictionary with IP addre
 
 
 if ip_dict['1st octet'] == 10:
-    print(f'{n2}. The address category - "Private Internet"\n')
+    print(f'{n2}. The address category - "Private Internet"')
     
 elif ip_dict['1st octet'] == 172 and 16 <= ip_dict['2st octet'] <= 31:
-    print(f'{n2}. The address category - "Private Internet"\n')
+    print(f'{n2}. The address category - "Private Internet"')
     
 elif ip_dict['1st octet'] == 192 and ip_dict['2st octet'] == 168:
-    print(f'{n2}. The address category - "Private Internet"\n')
+    print(f'{n2}. The address category - "Private Internet"')
     
 else:
-    print(f'{n2}. The address category - "Public Internet"\n')
+    print(f'{n2}. The address category - "Public Internet"')
 
 
 # 3. Determine subnet attributes
 
 n3 = 3  # n3 - third step
 
+print(f'{n3}. Subnetting attributes:\n')
 mask_bin = int(ip_prefix)*'1' + (32-int(ip_prefix))*'0'
 
 mask_bin_list = []
@@ -146,6 +148,8 @@ for i in ip_dict:
         print(i, end='\n')
     else:
         print(i, end=10*' ')
+
+print(53*'- ')
 
 print('Host Address (decimal):' + 17*' ', end='')
 for i in ip_dict:
