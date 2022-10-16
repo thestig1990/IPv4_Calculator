@@ -28,18 +28,24 @@ host_address = input('Enter IP address of host: ')
 
 # check the correctness of the IP address
 while True:
-    if correct_ip(host_address):
-        break
-    else:
+    try:
+        if correct_ip(host_address):
+            break
+    except ValueError:
         host_address = input('Please, Enter correct IP address of host: ')
+    else:
+        host_address = input('Please, Enter correct IP address of host(): ')
 
-# Entering IP prefix         
+# Entering IP prefix
 ip_prefix = input('Enter IP prefix: ')
 
 # check the correctness of the prefix
 while True:
-    if 1 <= int(ip_prefix) <= 31:
-        break
+    try:
+        if 1 <= int(ip_prefix) <= 31:
+            break
+    except ValueError:
+        ip_prefix = input('Please, Enter correct prefix(<32): ')
     else:
         ip_prefix = input('Please, Enter correct prefix(<32): ')
 
