@@ -10,7 +10,7 @@ IPv4_Calculator🧮 is developed for:
 ```Python
 python .\ipv4_calculator.py
 
-Enter IP address of host: 24.156.99.202
+Enter IP address of the host: 24.156.99.202
 Enter IP prefix: 12
 
 IP address: 24.156.99.202/12
