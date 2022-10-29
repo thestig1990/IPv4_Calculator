@@ -8,7 +8,7 @@ IPv4_Calculator🧮 is developed for:
 ---
 ### Example 
 ```Python
-# Script run
+# Run script
 python .\ipv4_calculator.py
 
 # Input data
