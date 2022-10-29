@@ -8,11 +8,14 @@ IPv4_Calculator🧮 is developed for:
 ---
 ### Example 
 ```Python
+# Script run
 python .\ipv4_calculator.py
 
+# Input data
 Enter IP address of the host: 24.156.99.202
 Enter IP prefix: 12
 
+# Output data
 IP address: 24.156.99.202/12
 
 1. The network class - "A"
@@ -33,5 +36,5 @@ Network Address (binary):             00011000           10010000           0000
 First available host (binary):        00011000           10010000           00000000           00000001
 Last available host (binary):         00011000           10011111           11111111           11111110
 Broadcast address (binary):           00011000           10011111           11111111           11111111
-Available number of addresses:                         32 - 12 = 20 , 2**20 - 2 = 1048574
+Available number of addresses:                       32 - 12 = 20 , 2**20 - 2 = 1048574
 ```
